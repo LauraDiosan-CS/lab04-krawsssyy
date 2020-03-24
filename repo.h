@@ -3,7 +3,7 @@
 
 class Repo {
 private:
-	Player players[20];
+	Player players[30];
 	int n;
 public:
 	Repo();
@@ -11,4 +11,8 @@ public:
 	void addElement(Player s);
 	Player* getAll();
 	int getSize();
+	void updatePlayer(int id, const Player& p);
+	void deletePlayer(int id);
+	Player readPlayer(int id = 0);
 };
+

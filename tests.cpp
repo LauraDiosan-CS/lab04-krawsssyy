@@ -2,6 +2,7 @@
 #include <string>
 #include "repo.h"
 #include "player.h"
+#include "service.h"
 
 void testPlayer()
 {
@@ -11,8 +12,8 @@ void testPlayer()
 	name2 = new char[8];
 	strcpy_s(name1, sizeof "Andrei" , "Andrei");
 	strcpy_s(name2, sizeof "Gabriel", "Gabriel");
-	Player p1(name1, 10, 5);
-	Player p2(name2, 7, 7);
+	Player p1(1, name1, 10, 5);
+	Player p2(2, name2, 7, 7);
 	assert(!strcmp(p1.getName(), "Andrei"));
 	assert(!strcmp(p2.getName(), "Gabriel"));
 	assert(p1.getPlayedGames() == 10);
@@ -41,22 +42,53 @@ void testRepo()
 	char* name2 = new char[10];
 	strcpy_s(name1, sizeof "Andrei", "Andrei");
 	strcpy_s(name2, sizeof "Gabriel", "Gabriel");
-	Player p1(name1, 10, 5);
-	Player p2(name2, 7, 7);
+	Player p1(1, name1, 10, 5);
+	Player p2(2, name2, 7, 7);
 	Repo r;
 	r.addElement(p1);
 	assert(r.getSize() == 1);
 	r.addElement(p2);
 	assert(r.getSize() == 2);
-	Player players[2];
-	players[0] = p1;
-	players[1] = p2;
 	assert(r.getAll()[0] == p1);
 	assert(r.getAll()[1] == p2);
+	assert(r.readPlayer(1) == p1);
+	assert(r.readPlayer(2) == p2);
+	Player p3 = p2;
+	r.deletePlayer(2);
+	assert(r.getSize() == 1);
+	r.updatePlayer(1, p3);
+	assert(r.readPlayer(2) == p2); 
 	delete[] name1;
 	name1 = nullptr;
 	delete[] name2;
 	name2 = nullptr; 
 }
 
-/* crud repo*/
+void testService()
+{
+	char* name1 = new char[10];
+	char* name2 = new char[10];
+	strcpy_s(name1, sizeof "Andrei", "Andrei");
+	strcpy_s(name2, sizeof "Gabriel", "Gabriel");
+	Player p1(1, name1, 10, 5);
+	Player p2(2, name2, 7, 7);
+	Repo r;
+	Service serv(r);
+	serv.addElem(1, name1, 10, 5);
+	assert(serv.getSize() == 1);
+	serv.addElem(2, name2, 7, 7);
+	assert(serv.getSize() == 2);
+	assert(serv.getAll()[0] == p1);
+	assert(serv.getAll()[1] == p2);
+	assert(serv.readPlays(1) == p1);
+	assert(serv.readPlays(2) == p2);
+	Player p3 = p2;
+	serv.deletePlayer(2);
+	assert(serv.getSize() == 1);
+	serv.updatePlayer(1, p3);
+	assert(serv.readPlays(2) == p2);
+	delete[] name1;
+	name1 = nullptr;
+	delete[] name2;
+	name2 = nullptr;
+}
