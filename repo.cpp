@@ -27,16 +27,20 @@ void Repo::updatePlayer(int id, const Player& p)
 			this->getAll()[i] = p;
 }
 
-Player Repo::readPlayer(int id)
+Player* Repo::readPlayer(int id)
 {
-	if (id != 0)
+	if (id)
 	{
-		for (Player player : this->players)
+		for (auto player : this->players)
 			if (player.getId() == id)
-				return player;
+			{
+				Player* pp = new Player(player);
+				return pp;
+			}
+		return nullptr;
 	}
 	else
-		this->getAll();
+		return this->players;
 }
 
 void Repo::deletePlayer(int id)
@@ -44,12 +48,12 @@ void Repo::deletePlayer(int id)
 	int i;
 	int p = this->getSize();
 	for (i = 0; i < p; i++)
-		if (this->getAll()[i].getId() == id)
+		if (this->players[i].getId() == id)
 			break;
 	if (i < p)
 	{
 		for (int j = i; j < p - 1; j++)
-			this->getAll()[j] = this->getAll()[j + 1];
+			this->players[j] = this->players[j + 1];
 		this->n--;
 
 	}

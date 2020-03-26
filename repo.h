@@ -13,6 +13,6 @@ public:
 	int getSize();
 	void updatePlayer(int id, const Player& p);
 	void deletePlayer(int id);
-	Player readPlayer(int id = 0);
+	Player* readPlayer(int id = 0);
 };
 
