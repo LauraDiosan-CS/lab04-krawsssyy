@@ -3,6 +3,7 @@
 #include "repo.h"
 #include "player.h"
 #include "service.h"
+#include "ui.h"
 using  namespace std;
 
 int main()
@@ -10,6 +11,9 @@ int main()
 	testPlayer();
 	testRepo();
 	testService();
-	cout << "Hello world!";
+	Repo<Player> r;
+	Service s(r);
+	UI ui(s);
+	ui.runConsole();
 	return 0;
 }

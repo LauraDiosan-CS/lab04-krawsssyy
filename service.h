@@ -1,18 +1,23 @@
 #pragma once
 #include "Repo.h"
 #include "Player.h"
+#include <stack>
+#include <functional>
+using namespace std;
 class Service {
 private:
-	Repo& r;
+	Repo<Player>& r;
+	stack< vector<Player> > undoStack;
 public:
-	Service(Repo& repo);
+	Service(Repo<Player>& repo);
 	~Service() {};
 	void addElem(int id, char* name, int playedGames, int wonGames);
-	Player* getAll();
-	Player* readPlays(int id = 0);
+	vector<Player> getAll();
+	Player* readPlayer(int id);
 	void updatePlayer(int idOrig, int id, char* name, int playedGames, int wonGames);
 	void deletePlayer(int id);
-	int getSize();
-	Player* filterGames();
-	Player* orderDescdening();
+    size_t getSize();
+	vector<Player> filterGames();
+	vector<Player> orderDescdening();
+	bool undo();
 };
