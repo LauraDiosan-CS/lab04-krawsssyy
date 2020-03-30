@@ -39,7 +39,7 @@ size_t Service::getSize()
 	return this->r.getSize();
 }
 
-vector<Player> Service::filterGames()
+void Service::filterGames()
 {
 	vector<Player> filtered;
 	vector<Player> players = this->getAll();
@@ -50,10 +50,9 @@ vector<Player> Service::filterGames()
 	}
 	this->undoStack.push(this->r.getAll());
 	this->r.setVector(filtered);
-	return filtered;
 }
 
-vector<Player> Service::orderDescdening()
+void Service::orderDescdening()
 {
 	vector<Player> players = this->getAll();
 	for(int i = 0; i < players.size(); i++)
@@ -66,7 +65,6 @@ vector<Player> Service::orderDescdening()
 			}
 	this->undoStack.push(this->r.getAll());
 	this->r.setVector(players);
-	return players;
 }
 
 bool Service::undo()

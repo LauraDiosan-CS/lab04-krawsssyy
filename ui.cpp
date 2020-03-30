@@ -63,13 +63,13 @@ void UI::handleDelete()
 
 void UI::handleFilter()
 {
-	vector<Player> result = this->s.filterGames();
+	this->s.filterGames();
 	this->handleShowAll();
 }
 
 void UI::handleOrder()
 {
-	vector<Player> result = this->s.orderDescdening();
+	this->s.orderDescdening();
 	this->handleShowAll();
 
 }

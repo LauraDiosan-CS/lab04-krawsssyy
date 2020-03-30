@@ -17,7 +17,7 @@ public:
 	void updatePlayer(int idOrig, int id, char* name, int playedGames, int wonGames);
 	void deletePlayer(int id);
     size_t getSize();
-	vector<Player> filterGames();
-	vector<Player> orderDescdening();
+	void filterGames();
+	void orderDescdening();
 	bool undo();
 };
