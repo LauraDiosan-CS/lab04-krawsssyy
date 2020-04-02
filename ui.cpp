@@ -16,6 +16,7 @@ void UI::handleAdd()
 	name = new char[strlen(s) + 1];
 	strcpy_s(name, strlen(s) + 1, s);
 	this->s.addElem(id, name, playedGames, wonGames);
+	delete[] name;
 }
 
 void UI::handleShowID()
@@ -52,6 +53,7 @@ void UI::handleUpdate()
 	name = new char[strlen(s) + 1];
 	strcpy_s(name, strlen(s) + 1, s);
 	this->s.updatePlayer(idOrig, id, name, playedGames, wonGames);
+	delete[] name;
 }
 
 void UI::handleDelete()
@@ -63,7 +65,7 @@ void UI::handleDelete()
 
 void UI::handleFilter()
 {
-	this->s.filterGames();
+	vector<Player> = this->s.filterGames();
 	this->handleShowAll();
 }
 
