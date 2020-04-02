@@ -17,3 +17,6 @@ int main()
 	ui.runConsole();
 	return 0;
 }
+/* lab6, in biblioteca, avem carti, fiecare carte are autor,titlu,an aparitie
+CRUD Repo + Serv + UI
+*/

@@ -65,7 +65,7 @@ void UI::handleDelete()
 
 void UI::handleFilter()
 {
-	vector<Player> = this->s.filterGames();
+	this->s.filterGames();
 	this->handleShowAll();
 }
 
